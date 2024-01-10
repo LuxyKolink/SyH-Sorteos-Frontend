@@ -1,0 +1,18 @@
+export interface Raffle {
+    id: number,
+    company: number,
+    title: string,
+    category: string,
+    status: string,
+    creator: string,
+    type: string,
+    prizes: string[],
+    startDate: Date,
+    startTime: Date,
+    endDate: Date,
+    endTime: Date,
+    conditions: string,
+    policy: string[],
+    participants: string[],
+    winners: string[],
+}
