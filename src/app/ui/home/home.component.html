@@ -215,7 +215,11 @@
             </div>
           </div>
         </div>
-        <app-table [raffle]="raffle"></app-table>
+        <app-table 
+        *ngFor="let raffle of raffleList"
+        [raffle]="raffle"
+
+        ></app-table>
         <app-paginator></app-paginator>
       </div>
       

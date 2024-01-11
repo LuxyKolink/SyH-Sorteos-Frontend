@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { PaginatorComponent } from '../../features/paginator/paginator.component';
 import { TableComponent } from '../../features/table/table.component';
 import { Raffle } from '../../data/raffle/interface/raffle';
@@ -6,29 +7,51 @@ import { Raffle } from '../../data/raffle/interface/raffle';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PaginatorComponent, TableComponent],
+  imports: [CommonModule, PaginatorComponent, TableComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   readonly baseUrl = 'https://angular.dev/assets/tutorials/common';
 
-  raffle: Raffle = {
-    id: 1,
-    company: 1,
-    title: 'Rifa casa',
-    category: 'Casa',
-    status: 'Abierto',
-    creator: 'Santiago',
-    type: 'Kids',
-    prizes: [],
-    startDate: new Date(),
-    startTime: new Date(),
-    endDate: new Date(),
-    endTime: new Date(),
-    conditions: 'Solo afiliados',
-    policy: [],
-    participants: [],
-    winners: []
-  };
+  raffleList: Raffle[] =
+  [
+    {
+      id: 1,
+      company: 1,
+      title: 'Rifa casa',
+      category: 'Casa',
+      status: 'Abierto',
+      creator: 'Santiago',
+      type: 'Kids',
+      prizes: [],
+      startDate: new Date(),
+      startTime: new Date(),
+      endDate: new Date(),
+      endTime: new Date(),
+      conditions: 'Solo afiliados',
+      policy: [],
+      participants: [],
+      winners: []
+    },
+    {
+      id: 2,
+      company: 1,
+      title: 'Rifa carro',
+      category: 'Carro',
+      status: 'Abierto',
+      creator: 'Kevin',
+      type: 'Kids',
+      prizes: [],
+      startDate: new Date(),
+      startTime: new Date(),
+      endDate: new Date(),
+      endTime: new Date(),
+      conditions: 'Solo afiliados',
+      policy: [],
+      participants: [],
+      winners: []
+    },
+  ]
+  
 }
