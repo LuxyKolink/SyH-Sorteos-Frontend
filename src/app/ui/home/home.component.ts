@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginatorComponent } from '../../features/paginator/paginator.component';
 import { TableComponent } from '../../features/table/table.component';
 import { Raffle } from '../../data/raffle/interface/raffle';
+import { RaffleService } from '../../data/raffle/service/raffle.service';
 
 @Component({
   selector: 'app-home',
@@ -12,46 +13,14 @@ import { Raffle } from '../../data/raffle/interface/raffle';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  readonly baseUrl = 'https://angular.dev/assets/tutorials/common';
 
-  raffleList: Raffle[] =
-  [
-    {
-      id: 1,
-      company: 1,
-      title: 'Rifa casa',
-      category: 'Casa',
-      status: 'Abierto',
-      creator: 'Santiago',
-      type: 'Kids',
-      prizes: [],
-      startDate: new Date(),
-      startTime: new Date(),
-      endDate: new Date(),
-      endTime: new Date(),
-      conditions: 'Solo afiliados',
-      policy: [],
-      participants: [],
-      winners: []
-    },
-    {
-      id: 2,
-      company: 1,
-      title: 'Rifa carro',
-      category: 'Carro',
-      status: 'Abierto',
-      creator: 'Kevin',
-      type: 'Kids',
-      prizes: [],
-      startDate: new Date(),
-      startTime: new Date(),
-      endDate: new Date(),
-      endTime: new Date(),
-      conditions: 'Solo afiliados',
-      policy: [],
-      participants: [],
-      winners: []
-    },
-  ]
-  
+  raffleList: Raffle[] = []
+  raffleService: RaffleService = inject(RaffleService);
+
+  constructor(){
+    this.raffleService.getAllRaffles().then((raffleList: Raffle[]) => {
+      this.raffleList = raffleList;
+    })
+  }
+
 }
