@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { RaffleService } from '../data/raffle/service/raffle.service';
-import { Raffle } from '../data/raffle/interface/raffle';
+import { RaffleService } from '../services/raffle.service';
+import { Raffle } from '../interfaces/raffle';
 
 @Component({
   selector: 'app-details',

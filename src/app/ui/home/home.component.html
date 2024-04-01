@@ -1,2 +1,2 @@
-<app-table *ngFor="let raffle of raffleList" [raffle]="raffle"></app-table>
+<app-table *ngFor="let raffle of raffleList$ | async " [raffle]="raffle"></app-table>
 <app-paginator></app-paginator>

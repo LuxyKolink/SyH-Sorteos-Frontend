@@ -1,18 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Raffle } from '../interface/raffle';
+import { Injectable, inject } from '@angular/core';
+import { Raffle } from '../interfaces/raffle';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RaffleService {
 
-  constructor() { }
+  private http = inject( HttpClient )
+  constructor() {
+
+    console.log('Cargando data');
+    
+   }
 
   baseUrl = 'http://localhost:3500/raffle';
   
-  async getAllRaffles(): Promise<Raffle[]> {
+  async getAllRaffles2(): Promise<Raffle[]> {
     const data = await fetch(this.baseUrl);
     return (await data.json()) ?? [];
+  }
+
+  getAllRaffles(): Observable<Raffle[]> {
+    return this.http.get<Raffle[]>(this.baseUrl);
   }
 
   async getRaffleById(id: number): Promise<Raffle | undefined> {

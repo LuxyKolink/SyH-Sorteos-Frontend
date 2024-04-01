@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginatorComponent } from '../../features/paginator/paginator.component';
 import { TableComponent } from '../../features/table/table.component';
-import { Raffle } from '../../data/raffle/interface/raffle';
-import { RaffleService } from '../../data/raffle/service/raffle.service';
+import { Raffle } from '../../interfaces/raffle';
+import { RaffleService } from '../../services/raffle.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,15 +13,21 @@ import { RaffleService } from '../../data/raffle/service/raffle.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
-  raffleList: Raffle[] = []
+  raffleList$!: Observable<Raffle[]>;
   raffleService: RaffleService = inject(RaffleService);
 
-  constructor(){
-    this.raffleService.getAllRaffles().then((raffleList: Raffle[]) => {
-      this.raffleList = raffleList;
-    })
+  constructor() {
+    // this.raffleService.getAllRaffles().then((raffleList: Raffle[]) => {
+    //   this.raffleList = raffleList;
+    // })
+    
+    // this.raffleService.getAllRaffles();
+  }
+
+  ngOnInit(): void {
+    this.raffleList$ = this.raffleService.getAllRaffles()
   }
 
 }
